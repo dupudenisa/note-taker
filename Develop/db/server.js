@@ -1,13 +1,24 @@
-const express = require("express");
-const path = require("path");
-var fs = require('fs');
+var express = require("express");
+var path = require("path");
 var app = express();
+var fs = require('fs');
+
+var PORT = process.env.PORT || 3000;
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static('public'));
 
 
-const PORT = process.env.PORT || 3000;
+
+app.get("/notes",function(req,res){
+    res.sendFile(path.join(__dirname, "/public/notes.html"));
+})
 
 
-
+app.get("/index",function(req,res){
+    res.sendFile(path.join(__dirname, "/public/index.html"));
+})
 
 
 
